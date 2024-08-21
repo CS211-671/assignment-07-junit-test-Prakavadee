@@ -23,4 +23,20 @@ class UserTest {
         boolean actual = user.validatePassword("plain-p@ssw0rd");
         assertTrue(actual);
     }
+
+    @Test
+    @DisplayName("Incorrect password should not be verified")
+    public void testIncorrectPasswordShouldNotBeVerified() {
+        User user = new User("user01", "plain-p@ssw0rd");
+        boolean actual = user.validatePassword("wrong-password");
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Username should be correctly matched")
+    public void testIsUsername() {
+        User user = new User("user01", "plain-p@ssw0rd");
+        assertTrue(user.isUsername("user01"));
+        assertFalse(user.isUsername("user02"));
+    }
 }
